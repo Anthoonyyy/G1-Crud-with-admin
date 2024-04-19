@@ -1,14 +1,11 @@
 nav ul li{
-    display: inline-block;
-    padding-right: 1em;
+    display: inline;
     text-decoration: none;
-   
+    padding-right: 1em;
 }
-
-a{
-    color: black;
-}
-
 #alert{
     color: red;
 }
+#comment{
+    color: rgb(4, 71, 15);
+}   
