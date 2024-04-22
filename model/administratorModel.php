@@ -1,5 +1,4 @@
 <?php
-
 // tentative de connexion
 function connectAdministrator(PDO $con, string $user, string $password) : bool|string
 {
