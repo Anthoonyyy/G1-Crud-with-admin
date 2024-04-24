@@ -45,8 +45,28 @@ function getOneGeolocByID(PDO $db, int $id) : string|bool|array
 // nous renvoie false en cas d'échec ou le message d'erreur sql
 // ou un tableau associatif en cas de succès
 
-function updateOneGeolocByID(PDO $db, int $idgeoloc, string $title, float $latitude, float $longitude) : string|bool
+function updateOneGeolocByID(PDO $db, int $idgeoloc, string $title,string $description, float $latitude, float $longitude) : string|bool
 {
-   return false;
+   
+    $sql = "UPDATE `geoloc` SET `title`= ?,`geolocdesc`= ?,`latitude`= ?,`longitude`= ? WHERE idgeoloc = ?";
+    $stmt = $db->prepare($sql);
+    /*$stmt->bindParam(1,$title);
+    $stmt->bindParam(2,$description);
+    $stmt->bindParam(3,$latitude);
+    $stmt->bindParam(4,$longitude);
+    $stmt->bindParam(5,$idgeoloc,PDO::PARAM_INT);*/
+    try{
+        $stmt->execute([
+            $title,
+            $description,
+            $latitude,
+            $longitude,
+            $idgeoloc
+        ]);
+        if($stmt->rowCount()===0) return false;
+        return true;
+    }catch(Exception $e){
+        return $e->getMessage();
+    }
    
 }

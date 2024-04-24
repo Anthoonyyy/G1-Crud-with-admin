@@ -21,15 +21,19 @@ if(isset($_GET['update']) && ctype_digit($_GET['update'])){
             $_POST['longitude']
     )){
         // vérification de valeurs
-        $idgeoloc = (int) $_POST['idgeoloc'];
+
+        //On vérifie la correspondance d'id entre la variable de GET et POST 
+        // pour éviter les tentatives de mise à jour d'un autre article
+        $idgeoloc = (int) $_POST['idgeoloc'] == $idUpdate ? $idUpdate : exit("Touche pas le code");
+
         $title  = htmlspecialchars(strip_tags(trim($_POST['title'])),ENT_QUOTES);
         $geolocdesc  = htmlspecialchars(trim($_POST['geolocdesc']),ENT_QUOTES);
         $latitude = (float) $_POST['latitude'];
         $longitude = (float) $_POST['longitude'];
 
         //fonction qui update la mise à jour
-      //$update =  updateOneGeolocByID($db,$idgeoloc);
-      //var_dump($update);
+      $update =  updateOneGeolocByID($db,$idgeoloc,$title,$geolocdesc,$latitude,$longitude);
+      var_dump($update);
     }
     //Chargement de l'article pour l'update
     $getOneGeoLoc = getOneGeolocByID($db,$idUpdate);
