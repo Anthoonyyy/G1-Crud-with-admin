@@ -33,7 +33,7 @@ if(isset($_GET['update']) && ctype_digit($_GET['update'])){
 
         //fonction qui update la mise à jour
       $update =  updateOneGeolocByID($db,$idgeoloc,$title,$geolocdesc,$latitude,$longitude);
-      var_dump($update);
+      //var_dump($update);
     }
     //Chargement de l'article pour l'update
     $getOneGeoLoc = getOneGeolocByID($db,$idUpdate);
